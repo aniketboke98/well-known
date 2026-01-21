@@ -127,7 +127,7 @@ static size_t WriteMemoryCallback(void *contents, size_t size, size_t nmemb, voi
     return realsize;
 }
 
-      std::string Login(const char *userKey, const char *adminName) {
+      std::string Login(const char *userKey, const char *adminName, const char *gameName) {
     if (!g_App)
         return "Internal Error";
 
@@ -177,10 +177,10 @@ static size_t WriteMemoryCallback(void *contents, size_t size, size_t nmemb, voi
   struct curl_httppost *formpost = NULL;
   struct curl_httppost *lastptr = NULL;
 
-  curl_formadd(&formpost, &lastptr, CURLFORM_COPYNAME, "game", CURLFORM_COPYCONTENTS, "PUBG", CURLFORM_END);
+  curl_formadd(&formpost, &lastptr, CURLFORM_COPYNAME, "game", CURLFORM_COPYCONTENTS, gameName, CURLFORM_END);
   curl_formadd(&formpost, &lastptr, CURLFORM_COPYNAME, "user_key", CURLFORM_COPYCONTENTS, userKey, CURLFORM_END);
   curl_formadd(&formpost, &lastptr, CURLFORM_COPYNAME, "serial", CURLFORM_COPYCONTENTS, UUID.c_str(), CURLFORM_END);
-  curl_formadd(&formpost, &lastptr, CURLFORM_COPYNAME, "admin_username", CURLFORM_COPYCONTENTS, "SIDU1", CURLFORM_END);
+  curl_formadd(&formpost, &lastptr, CURLFORM_COPYNAME, "admin_username", CURLFORM_COPYCONTENTS, adminName, CURLFORM_END);
   
   curl_easy_setopt(curl, CURLOPT_HTTPPOST, formpost);
   

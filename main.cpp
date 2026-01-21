@@ -1907,7 +1907,7 @@ void *LoginThread(void *arg)
         GetKey();
         if (fileExists(Filepath.c_str()) && !isFileEmpty(Filepath.c_str())) {
             if (!isLogin) {
-                Keystatus = Login(keyForLogin,"SIDU1");
+                Keystatus = Login(keyForLogin, "SIDU1", "PUBG");
                 if (Keystatus == "OK") {
                     isLogin = bValid && g_Auth == g_Token;
                     if (bValid && g_Auth == g_Token) {

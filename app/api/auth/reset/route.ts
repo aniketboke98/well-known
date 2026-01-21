@@ -30,6 +30,7 @@ export async function POST(req: NextRequest) {
         resetTime--;
         user.loginResetTime = resetTime.toString();
         user.loginDevices = ''; // Clear device lock
+        user.webSessionDevice = ''; // Clear web session lock
         await user.save();
         
         return NextResponse.json({ 
