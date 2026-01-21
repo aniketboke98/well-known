@@ -38,6 +38,7 @@ export async function POST(req: NextRequest) {
       saldo: ref.set_saldo || 0,
       uplink: ref.created_by,
       loginDevices: '', // Initial empty
+      webSessionDevice: '', // Initial empty
       loginResetTime: '3'
     });
 

@@ -1,3 +1,8 @@
+
+// Global Strings for UI
+
+std::string HWID = "N/A";
+
 std::string getClipboardText() {
         if (!g_App)
             return "";
@@ -157,7 +162,7 @@ static size_t WriteMemoryCallback(void *contents, size_t size, size_t nmemb, voi
     curl = curl_easy_init();
     //======LINKURL=====//
        if (curl) {
-        std::string BHATIA = OBFUSCATE ("https://Yourpanel/api/connect");
+        std::string BHATIA = OBFUSCATE ("https://axerlyn.in/api/connect");
         curl_easy_setopt(curl, CURLOPT_URL ,BHATIA.c_str());
 
         curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
@@ -175,7 +180,7 @@ static size_t WriteMemoryCallback(void *contents, size_t size, size_t nmemb, voi
   curl_formadd(&formpost, &lastptr, CURLFORM_COPYNAME, "game", CURLFORM_COPYCONTENTS, "PUBG", CURLFORM_END);
   curl_formadd(&formpost, &lastptr, CURLFORM_COPYNAME, "user_key", CURLFORM_COPYCONTENTS, userKey, CURLFORM_END);
   curl_formadd(&formpost, &lastptr, CURLFORM_COPYNAME, "serial", CURLFORM_COPYCONTENTS, UUID.c_str(), CURLFORM_END);
-  curl_formadd(&formpost, &lastptr, CURLFORM_COPYNAME, "admin_username", CURLFORM_COPYCONTENTS, adminName, CURLFORM_END);
+  curl_formadd(&formpost, &lastptr, CURLFORM_COPYNAME, "admin_username", CURLFORM_COPYCONTENTS, "SIDU1", CURLFORM_END);
   
   curl_easy_setopt(curl, CURLOPT_HTTPPOST, formpost);
   
@@ -197,7 +202,8 @@ static size_t WriteMemoryCallback(void *contents, size_t size, size_t nmemb, voi
                     std::string token = result[StrEnc("fAVA", "\x02\x20\x22\x20", 4).c_str()][/*token*/ StrEnc("{>3Lr", "\x0F\x51\x58\x29\x1C", 5).c_str()].get<std::string>();
                     time_t rng = result[StrEnc("fAVA", "\x02\x20\x22\x20", 4).c_str()][/*rng*/ StrEnc("+n,", "\x59\x00\x4B", 3).c_str()].get<time_t>();
                     EXP = result["data"]["EXP"].get<std::string>();
-                    HWID = UUID; // Store HWID for UI
+                    HWID = UUID;
+					// Store HWID for UI
                     if (rng + 30 > time(0)) {
                         g_Token = "1";
                         g_Auth = "1";
@@ -242,12 +248,6 @@ static size_t WriteMemoryCallback(void *contents, size_t size, size_t nmemb, voi
 
 extern struct android_app* g_App;
 
-// Global Strings for UI
-std::string EXP = "N/A";
-std::string HWID = "N/A";
-std::string g_Token = "";
-std::string g_Auth = "";
-bool bValid = false;
 
 static inline bool __() {
     return false;
@@ -328,3 +328,4 @@ inline void DefineDeveloper() {
         __scan::do_check();
     })();
 }
+

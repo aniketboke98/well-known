@@ -50,11 +50,11 @@ export async function POST(req: NextRequest) {
     const currentDevice = getDeviceFromUserAgent(userAgent);
     
     // Logic from Auth.php lines 113-140
-    let savedDevice = user.loginDevices;
+    let savedDevice = user.webSessionDevice;
     
     // Check if we need to update device (First login or Reset)
     if (!savedDevice || savedDevice === 'RedZONERROR') {
-        user.loginDevices = currentDevice;
+        user.webSessionDevice = currentDevice;
         await user.save();
         savedDevice = currentDevice;
     }

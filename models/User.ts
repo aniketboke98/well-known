@@ -7,6 +7,7 @@ export interface IUser extends Document {
   role: string; // 'owner' | 'admin' | 'reseller'
   uplink?: string;
   loginDevices?: string;
+  webSessionDevice?: string;
   loginResetTime?: string;
   status: boolean;
   createdAt: Date;
@@ -20,6 +21,7 @@ const UserSchema = new Schema<IUser>({
   role: { type: String, enum: ['owner', 'admin', 'reseller'], default: 'reseller' },
   uplink: { type: String }, // Who created this user
   loginDevices: { type: String }, // For HWID lock on admin panel
+  webSessionDevice: { type: String }, // For Web Browser Session UAgent Lock
   loginResetTime: { type: String, default: "3" }, // Reset chances
   status: { type: Boolean, default: true },
 }, { timestamps: true });

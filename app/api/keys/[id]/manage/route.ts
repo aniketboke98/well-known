@@ -4,7 +4,7 @@ import Key from '@/models/Key';
 import User from '@/models/User';
 import { getDataFromToken } from '@/lib/getDataFromToken';
 
-export async function POST(req: NextRequest, { params }: { params: { id: string } }) {
+export async function POST(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
     await dbConnect();
     const userData = getDataFromToken(req);
     
@@ -16,9 +16,10 @@ export async function POST(req: NextRequest, { params }: { params: { id: string 
     try {
         const body = await req.json();
         const { action, days } = body; // action: 'block', 'unblock', 'extend'
+        const { id } = await params;
 
         // 1. Fetch Key (Restricted by Role)
-        const key = await Key.findById(params.id);
+        const key = await Key.findById(id);
         if (!key) {
              return NextResponse.json({ error: 'Key not found' }, { status: 404 });
         }

@@ -4,6 +4,7 @@ import Key from '@/models/Key';
 import User from '@/models/User';
 import { getDataFromToken } from '@/lib/getDataFromToken';
 
+// Next.js 15: params is a Promise
 export async function POST(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
     await dbConnect();
     const userData = getDataFromToken(req);
